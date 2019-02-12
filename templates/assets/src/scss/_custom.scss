@@ -1,0 +1,313 @@
+
+body {
+  font-family: 'Jura', sans-serif;
+}
+
+// p Tag
+
+p {
+  font-size: 2rem;
+}
+
+// Custom Link
+
+a {
+  font-size: 2.3rem;
+  text-decoration: none;
+  color: $blue;
+  transition: all .3s ease;
+  position: relative;
+  padding-bottom: 5px;
+  @include lg { // 992px window width and more
+  	font-size: 2.5rem;
+  }
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        border-bottom: 3px solid $tomato;
+        transition: right 0.3s ease-out;
+    }
+
+    &:hover {
+      color: $orange;
+    &::before { right: 0; }
+    }
+}
+
+// Blocquote
+
+blockquote * {
+  font-size: 2.5rem;
+}
+
+// Center elements
+
+.center {
+  @include center; // _mixins center
+}
+
+// Responsive Image
+
+img {
+    max-width: 100%;
+    height: auto;
+		padding: 10px 0;
+}
+
+// SVG Effect
+
+.svg-lighten {
+	filter: invert(80%);
+  transition: all .3s ease;
+  &:hover {
+    filter: invert(100%);
+  }
+}
+
+// Hover Effect
+
+.hover {
+  transition: transform .3s; /* Animation */
+}
+
+.hover:hover {
+  transform: scale(.97);
+}
+
+// Header
+
+header {
+padding: 30px 15px !important;
+
+@include lg { // 992px window width and more
+	background-position-y: -100px !important;
+}
+
+	// Grid Area Logo
+
+	.site-logo {
+		grid-area: logo;
+    @include center; // _mixins center
+    @include lg { // 992px window width and more
+    	margin-left: 0;
+		}
+
+		span.site-name {
+			color: $alice;
+			font-size: 3rem;
+			transition: all .3s ease;
+			@include lg { // 992px window width and more
+				font-size: 4rem;
+			}
+		}
+
+		span.site-description {
+			font-size: 1.7rem;
+			color: rgba($alice, .7);
+			padding-left: 0;
+			transition: all .3s ease;
+			@include lg { // 992px window width and more
+				font-size: 2rem;
+				padding-left: 30px;
+			}
+		}
+
+		&:hover {
+			span.site-name {
+				color: rgba($alice, .7);
+			}
+			span.site-description {
+				color:$alice;
+			}
+		}
+	}
+
+	// Grid Area Nav
+
+	.main-nav {
+		grid-area: nav;
+		list-style-type: none;
+
+		@include lg { // 992px window width and more
+			font-size: 2rem;
+		}
+
+		li {
+			float: left;
+			padding: 5px;
+		}
+
+		// Effect ( nav )
+
+		.current {
+			a {
+				color: $alice;
+			}
+		}
+
+	}
+
+// Grid Area Header SEO
+
+	.header-seo {
+		grid-area: header-seo;
+
+    .home-title, .page-title {
+      color: $alice;
+      text-align: center;
+      font-size: 4rem;
+      @include lg { // 992px window width and more
+        font-size: 6rem;
+      }
+    }
+
+		.meta-title {
+	    font-size: 2rem;
+			color: rgba($alice, .7);
+			@include lg { // 992px window width and more
+        font-size: 2.7rem;
+      }
+		}
+	}
+
+	// Grid Area Privacy
+
+	.privacy-panel {
+		grid-area: privacy;
+		a {
+			font-size: 2rem;
+          padding-bottom: 10px;
+			span {
+				color: rgba($alice, .7);
+			}
+		}
+
+	}
+
+	// Content Header Dispaly Grid
+
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas:
+	"logo logo logo"
+	"nav nav nav"
+	"header-seo header-seo header-seo"
+	"privacy privacy privacy";
+
+	// 992px window width and more
+
+	@include lg {
+		grid-template-areas:
+		"logo nav nav"
+		"header-seo header-seo header-seo"
+		"privacy privacy privacy";
+	}
+
+}
+
+// Breadcrumbs
+
+.breadcrumbs {
+	padding-left: 20px;
+	margin-top: 20px;
+	font-size: 2rem;
+}
+
+// Grid Area Sidebar
+
+.sidebar { // https://developer.mozilla.org/en-US/docs/Web/CSS/grid
+	grid-area: sidebar;
+  .sidebar-heading {
+    margin-bottom: 5px;
+    border-bottom: 10px solid tomato;
+    padding: 5px;
+    width: 100%;
+    @include md { // 992px window width and more
+        width: 80%;
+    }
+  }
+}
+
+// Grid Area Content
+
+.content-body {
+	grid-area: content;
+}
+
+// Main Grid Areas
+
+.main {
+	padding: 10px; // For mobile
+  a {
+    color: $black;
+    font-weight: bold;
+  }
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-areas:
+	"content content content content content content"
+	"sidebar sidebar sidebar sidebar sidebar sidebar";
+
+	// 992px window width and more
+	@include lg {
+		padding: 30px;
+		grid-template-areas:
+		"sidebar sidebar content content content content"
+	}
+}
+
+// Home Sections
+
+.home-sections {
+	.section-heading {
+		font-size: 3rem;
+		margin-bottom: 5px;
+		padding: 5px;
+		border-bottom: 5px solid tomato;
+		width: 100%;
+	}
+	@include lg {
+		.section-heading {
+			width: 80%;
+			font-size: 4rem;
+	 }
+	}
+}
+
+// Footer
+
+.footer {
+	background: $dark_gray;
+	color: $alice;
+  margin: 0;
+	padding: 60px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+  align-items: center;     /* center items horizontally, in this case */
+	p {
+		margin: 0;
+	}
+}
+
+// Button Edit Page
+
+.b-edit {
+	margin: 10px;
+}
+
+// Debug Regions
+
+#debug {
+	padding: 10px;
+
+	pre {
+		padding: 20px;
+	}
+
+}

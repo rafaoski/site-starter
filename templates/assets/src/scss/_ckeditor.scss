@@ -1,0 +1,73 @@
+/****************************************************************
+ * Bodycopy text and images
+ *
+ * These styles are good to have on any ProcessWire site
+ *
+ */
+
+ .align_left {
+	/* display images in center rather than aligned */
+	display: block;
+	float: none;
+	margin: 1em auto;
+	max-width: 100%;
+	  @include lg { // 992px window width and more
+		  float: left;
+		  margin: 0 1em 0.5em 0;
+		  position: relative;
+		  top: 0.5em;
+		  max-width: 50%;
+	  }
+  }
+  
+  .align_right {
+	/* display images in center rather than aligned */
+	display: block;
+	float: none;
+	margin: 1em auto;
+	max-width: 100%;
+	  @include lg { // 992px window width and more
+		  float: right;
+		  margin: 0 0 0.5em 1em;
+		  max-width: 50%;
+	}
+  }
+  
+  .align_center {
+	/* for images placed in rich text editor */
+	display: block;
+	float: none;
+	margin: 1em auto;
+	max-width: 100%;
+	  @include lg { // 992px window width and more
+		  display: block;
+		  margin: 1em auto;
+		  position: relative;
+		  top: 0.5em;
+	  }
+  }
+  
+  figure {
+	/* figure for image that has a caption */
+	  display: block;
+	  text-align: center;
+		@include lg { // 992px window width and more
+			display: table;
+			margin: 1em 0;
+	  }
+  }
+  
+  figure figcaption {
+	/* display caption text below image contained to image width */
+	display: block;
+	text-align: center;
+	  @include lg { // 992px window width and more
+		  display: table-caption;
+		  caption-side: bottom;
+		  font-size: 13px;
+		  line-height: 1.4em;
+		  margin-top: 5px;
+		  color: #777;
+	}
+  }
+  
