@@ -6,7 +6,7 @@
 ### Installed Modules:
 [SeoMaestro](https://modules.processwire.com/modules/seo-maestro/) 
 
-### Essentially, this structure uses minimalist CSS framework 
+### Essentially, this structure uses minimalist CSS framework:
 [Milligram](https://milligram.io/)
 
 ### Additionally, you can use the icon font that are included:
@@ -15,17 +15,17 @@
 ### All images ( svg ) on the pages come from:
 [Icofont](https://icofont.com/) 
 
-### In order to speed up the loading of pages, it was used
+### In order to speed up the loading of pages, it was used:
 [Turbolinks](https://github.com/turbolinks/turbolinks) 
 
-#### How To Install
+#### How To Install:
 1. Download the [zip file](https://github.com/rafaoski/site-starter/archive/master.zip) at Github or clone directly the repo: ```git clone https://github.com/rafaoski/site-starter.git```
 2. Extract the folder **site-starter-master** into a fresh ProcessWire installation root folder.
 3. During the installation of ProcessWire, choose the profile **Starter Profile for Processwire 3x**.
 
 #### If you want to use [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) you must first ensure that [Node.js](https://nodejs.org/en/download/) and [NPM](https://www.npmjs.com/get-npm) are installed on your machine.
 Basic example to Debian and Ubuntu based Linux distributions:  
-#### Node.js
+#### Node.js:
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
@@ -34,7 +34,7 @@ See more installation options [LINK](https://nodejs.org/en/download/package-mana
 <code>node -v</code>  
 <code>npm -v</code>
 
-#### Set BrowserSync inside folder <code>/templates/webpack.mix.js</code> and change your dev url  
+#### Set BrowserSync inside folder <code>/templates/webpack.mix.js</code> and change your dev url:
 <code>proxy: 'http://localhost/proc-starter/',</code> to your installation processwire folder like:  
 <code>proxy: 'http://localhost/your-processwire-installation-folder/',</code>
 
