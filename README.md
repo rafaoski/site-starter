@@ -3,12 +3,16 @@
 #### [MarkupRegions](https://processwire.com/blog/posts/processwire-3.0.49-introduces-a-new-template-file-strategy/)
 #### [FunctionsAPI](https://processwire.com/blog/posts/processwire-3.0.39-core-updates/)  
 
-#### Essentially, this structure uses minimalist CSS framework [Milligram](https://milligram.io/)
+### Essentially, this structure uses minimalist CSS framework 
+[Milligram](https://milligram.io/)
+
+### Additionally, you can use the free icon font that are included:
+[Feather Icons](https://feathericons.com/)  
 
 ### Installed Modules
 [SeoMaestro](https://modules.processwire.com/modules/seo-maestro/) 
 
-### How To Install
+#### How To Install
 1. Download the [zip file](https://github.com/rafaoski/site-starter/archive/master.zip) at Github or clone directly the repo: ```git clone https://github.com/rafaoski/site-starter.git```
 2. Extract the folder **site-starter-master** into a fresh ProcessWire installation root folder.
 3. During the installation of ProcessWire, choose the profile **Starter Profile for Processwire 3x**.
@@ -45,7 +49,9 @@ On completion, use the command <code><b>npm run production</b></code> to build s
 
 #### All build styles and scripts is inside the ( templates/assets/ ) folder
 
-#### References:
+### References:
 [Milligram](https://milligram.io/)  
 [Laravel Mix](https://github.com/JeffreyWay/laravel-mix)  
 [Turbolinks](https://github.com/turbolinks/turbolinks)  
+[Feather Icons](https://feathericons.com/)  
+[Icofont](https://icofont.com/)  

@@ -9,62 +9,49 @@
  * copy of all ProcessWire API variables. This file is an idea place for adding your
  * own hook methods.
  * http://processwire.com/api/hooks/
+ * https://processwire.com/api/ref/hook-event/
  *
  */
 
-// Simple SEO Hook
+// SEO Hook 
 $wire->addHookAfter('Pages::saveReady', function($event) {
-	// retrieve first argument by index (0 based)
-	$page = $event->arguments(0);
-	// Seo Title
-	if($page->meta_title == '' && $page->body != '' ) {
-		if (preg_match('!(<h3>.+?</h3>)!', $page->body, $matches)) {
-			$page->meta_title = sanitizer()->text($matches[1]);
-		}
+// retrieve first argument by index (0 based)
+$page = $event->arguments(0);
+// Seo Title
+if($page->meta_title == '' && $page->body != '' ) {
+	if (preg_match('!(<h3>.+?</h3>)!', $page->body, $matches)) {
+		$page->meta_title = sanitizer()->text($matches[1]);
 	}
-	// Seo Description
-	if($page->meta_description == '' && $page->body != '' ) {
-			if (preg_match('!(<p>.+?</p>)!', $page->body, $matches)) {
-	    	$page->meta_description = sanitizer()->truncate($matches[1],
-				[
-				'maxLength' => 190,
-			    'more' => ' ...'
-				]
-			);
-		}
+}
+// Seo Description
+if($page->meta_description == '' && $page->body != '' ) {
+	if (preg_match('!(<p>.+?</p>)!', $page->body, $matches)) {
+	$page->meta_description = sanitizer()->truncate($matches[1],
+		[
+		'maxLength' => 190,
+		'more' => ' ...'
+		]
+	);
 	}
+}
 // Simple Information
 if ( $page->isChanged('meta_title') || $page->isChanged('meta_description') ) {
 	$event->return = $this->message(__('Update Your SEO'));
 }
 });
 
-/** @var ProcessWire $wire */
-// Simple Hook to Minify HTML
+// Hook to Minify HTML
 $wire->addHookAfter('Page::render', function($event) {
-	if(page()->template == 'admin') return;
-	if(!pages('/options/advanced-options/minify-html/')->checkbox_1) return;
-		$value  = $event->return;
-	// https://datayze.com/howto/minify-html-with-php.php
-		$event->return = preg_replace('/\s+/', ' ', $value);
-	});
-
-
-/** @var ProcessWire $wire */
-// Simple Hook to Minify HTML
-$wire->addHookAfter('Page::render', function($event) {
-	if(page()->template == 'admin') return;
-	if(!pages('/options/advanced-options/minify-html/')->checkbox) return;
-		$value  = $event->return;
-	// https://datayze.com/howto/minify-html-with-php.php
-		$event->return = preg_replace('/\s+/', ' ', $value);
+if(page()->template == 'admin') return;
+if(!pages('/options/advanced-options/minify-html/')->checkbox) return;
+$value  = $event->return;
+// https://datayze.com/howto/minify-html-with-php.php
+$event->return = preg_replace('/\s+/', ' ', $value);
 });
 
-// Hook CSS in the edit page adds auto margins to class .Inputfield <li>
+// Hook CSS in the edit Admin page adds auto margins to class ./Inputfield <li>
 $wire->addHookAfter('Page::render', function($event) {
-
 if(page()->template != 'admin') return;
-
 if( !pages('/options/')->option_switch->get("name=enable-small-admin-margin") ) return;
 
 // Check Page Name
@@ -86,9 +73,9 @@ switch (page()->name) {
 		return;
 	break;
 }
-
+// Return Content
 $value  = $event->return;
-
+// Custom CSS
 $cust_style = "\t<style id='hook-from-ready-php'>\n";
 $cust_style .= "\t\t.Inputfield:not(.InputfieldRowFirst){ margin-top: 10px !important; }\n";
 $cust_style .= "\t\t#ChildrenPageList, #wrap_Inputfield__pw_page_name, #wrap_template, #wrap_delete_page,
@@ -99,36 +86,41 @@ $value = str_replace("</title>", "</title>\n$cust_style", $value);
 $event->return = $value;
 });
 
+// Reload turbolinks ( Admin Pages )
+$wire->addHookAfter('Page::render', function($event) {
+if(page()->template != 'admin') return;
+$value  = $event->return;
+$turbolinks_reload = "<meta name='turbolinks-visit-control' content='reload'>";
+$value = str_replace("</head>", "\n\t$turbolinks_reload\n</head>", $value);
+// set the modified value back to the return value
+$event->return = $value;
+});
+
 // Remove unnecessary Categories and Tags
-// https://processwire.com/api/ref/hook-event/
 $wire->addHook('Pages::save', function($event) {
-
 $page = $event->arguments('page');
-
 if($page->template != 'options' || $page->checkbox_1 == 0) return;
-
-// Disable the check box after saving the page (you do not need it the next time you edit the options page)
+// Disable the check box after saving the page ( you do not need it the next time you edit the options page )
 $page->setAndSave('checkbox_1', 0);
-
 // Categories
 $cat_pages = '';
 foreach (pages()->get("template=blog-categories")->children as $category) {
-		if(!$category->references->count()) {
-			$cat_pages .= $category->title . ' , ';
-			$category->trash();
-		}
+	if(!$category->references->count()) {
+		$cat_pages .= $category->title . ' , ';
+		$category->trash();
+	}
 }
 // Tags
 $tag_pages = '';
 foreach (pages()->get("template=blog-tags")->children as $tag) {
-		if(!$tag->references->count()) {
-			$tag_pages .= $tag->title . ' , ';
-			$tag->trash();
-		}
+	if(!$tag->references->count()) {
+		$tag_pages .= $tag->title . ' , ';
+		$tag->trash();
+	}
 }
 
 if( $cat_pages ) {
-		$event->return = $this->message(__('You have removed the unnecessary Categories: ') . ' ' . $cat_pages);
+	$event->return = $this->message(__('You have removed the unnecessary Categories: ') . ' ' . $cat_pages);
 }
 
 if( $tag_pages ) {

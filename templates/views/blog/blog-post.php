@@ -29,7 +29,7 @@ $links = page()->links();
 if ($links->count()): ?>
 <h3><?=setting('also-like');?></h3>
 <ul>
- <?=$links->each("<li><a href={url}>{title}</a></li>") . '<br>';?>
+ <?=$links->each("<li><a href={url}>{title}</a></li>");?>
 </ul>
 <?php endif;
 // IF Enable Comments

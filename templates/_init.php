@@ -45,10 +45,10 @@ setting([
     // 'sire-date' => wireDate('ts', page()->date_time_field),
     // https://processwire.com/api/ref/wire-date-time/date/
     'basic-datetime' => datetime()->date('ts'),
-    // Advanced Options
+// Advanced Options
     'gw-code' => pages('/options/advanced-options/gw-code/')->checkbox ? pages('/options/advanced-options/gw-code/')->text_1 : '',
     'ga-code' => pages('/options/advanced-options/ga-code/')->checkbox ? pages('/options/advanced-options/ga-code/')->text_1 : '',
-    // Language Prefix => en ( views/_head.php )
+// Language Prefix => en ( views/_head.php )
     'lang' => pages('/options/')->text_2,
 // Images Options
     'img-medium' => page()->render('images', 'img-medium'),
@@ -63,7 +63,7 @@ setting([
     'css-files' => WireArray([
          urls('templates') . "assets/css/app.css"
     ]),
-    // Get Scripts
+// Get Scripts
       'js-files' => WireArray([
         // urls('templates') . "assets/js/app.js",
         urls('templates') . "assets/js/feather.min.js",
@@ -87,9 +87,7 @@ setting([
     'recent-posts' => __('Recent Posts'),
     'in-blog' => __('In The Blog'),
     'all-posts' => __('List All Posts'),
-    // 'categories' => __('Categories'),
-    // 'archives' => __('Archives'),
-  // COMMENTS FORM
+// COMMENTS FORM
     'cite' => __('Name'),
     'email' => __('Email'),
     'text' => __('Comment'),
@@ -107,14 +105,6 @@ setting([
 ]);
 
 include_once('./_func.php');
-
-// RSS FEED BLOG PAGE ( if installed module rss enable this => http://your-page/blog/rss)
-    // if($page->template->name == 'blog' && $input->urlSegment1 == 'rss') {
-    //     $rss = $modules->get("MarkupRSS");
-    //     $rss->title = page()->ts['recent'];
-    //     $rss->render($page->children("limit=12"));
-    // die();
-    // }
 
 // ADD USER => https://processwire.com/api/variables/user/
     // $u = $users->add('user-demo');
