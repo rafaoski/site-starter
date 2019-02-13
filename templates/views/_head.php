@@ -31,20 +31,18 @@ gwCode(setting('gw-code'));
 ?>
 </head>
 <body class='<?=setting('body-classes')->implode(' ')?>'>
-  <header id='header' class="header hero-image" style='
-      background: linear-gradient( rgba(0, 0, 0, 0.91), rgba(2, 35, 50, 0.82) ),
-      url("<?=$image ? $image->url : ''?>");
-      min-height: 70vh;
-      padding: 40px;
-      background-size: <?=page()->checkbox ? 'contain' : 'cover';?>; /* Resize the background image to cover the entire container */
-      background-attachment: fixed;
-      background-repeat: no-repeat; /* Do not repeat the image */
-      background-position: center top;'
-  >
-
-  <div class='site-logo'>
-    <?php editItem(pages()->get('/options/'));?>
-    <a href="<?=pages('/')->url;?>">
+<header id='header' class="header hero-image" style='background: linear-gradient( rgba(0, 0, 0, 0.91), rgba(2, 35, 50, 0.82) ),
+  url("<?=$image ? $image->url : ''?>");
+  min-height: 70vh;
+  padding: 40px;
+  background-size: <?=page()->checkbox ? 'contain' : 'cover';?>; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;'
+>
+<div class='site-logo'>
+  <?php editItem(pages()->get('/options/'));?>
+  <a href="<?=pages('/')->url;?>">
     <span class='site-name'><?=setting('site-name')?></span>
     <?php if(setting('logo')) :?>
     <img src="<?=setting('logo');?>" alt="<?=setting('site-name')?>"
@@ -53,37 +51,43 @@ gwCode(setting('gw-code'));
     <br>
     <span class='site-description'><?=setting('site-description')?></span>
   </a>
-    </div><!-- ./site-logo -->
+</div><!-- ./site-logo -->
 
-    <ul class='main-nav'>
-        <?=renderNav(setting('home')->children(), true);?>
-    </ul>
+<ul class='main-nav'>
+    <?=renderNav(setting('home')->children(), true);?>
+</ul>
 
-    <div id='header-seo' class='header-seo'>
-      <?php if (page() == pages('/')): ?>
-        <h1 class='home-title'>
-        <?=page('meta_title');?>
-      <?php else: ?>
-        <h1 class='page-title'>
-        <?=page('title');?> /
-      <?php endif; ?>
-        </h1>
-        <h2 class='meta-title'>
-        <?=page('meta_description');?>
-      </h2>
-      <?php if (page() != pages('/')):?>
-      <div id="breadcrumb" style='color: aliceblue; text-align: right; padding: 10px;'>
-        <?=breadCrumb(page());?>
-      </div>
-      <?php endif;?>
-    </div><!-- #/header-seo -->
+<?php if (page()->getLanguages() && modules()->isInstalled("LanguageSupportPageNames")) : ?>
+<ul id="lang-menu" class='lang-menu'>
+  <?=langMenu(page(), pages('/'))?>
+</ul>
+<?php endif; ?>
 
-    <div id='privacy' class='privacy-panel'>
-      <?=privacyPanel(setting('privacy-page'));?>
-    </div>
+<div id='header-seo' class='header-seo'>
+<?php if (page() == pages('/')): ?>
+  <h1 class='home-title'>
+    <?=page('meta_title');?>
+<?php else: ?>
+  <h1 class='page-title'>
+    <?=page('title');?> /
+  <?php endif; ?>
+  </h1>
+  <h2 class='meta-title'>
+    <?=page('meta_description');?>
+  </h2>
+<?php if (page() != pages('/')):?>
+  <div id="breadcrumb" style='color: aliceblue; text-align: right; padding: 10px;'>
+    <?=breadCrumb(page());?>
+  </div>
+<?php endif;?>
+</div><!-- #/header-seo -->
 
-  </header>
-<?php 
+<div id='privacy' class='privacy-panel'>
+  <?=privacyPanel(setting('privacy-page'));?>
+</div>
+
+</header>
+<?php
 // Social Share Buttons ( https://www.addtoany.com/ )
 if (setting('enable-share-buttons')) {
 echo toAny(['f','t','e']);

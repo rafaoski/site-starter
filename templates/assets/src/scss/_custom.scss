@@ -131,9 +131,12 @@ padding: 30px 15px !important;
 		grid-area: nav;
 		list-style-type: none;
 
-		@include lg { // 992px window width and more
-			font-size: 2rem;
-		}
+    a {
+      font-size: 2rem;
+      @include lg { // 992px window width and more
+          font-size: 2.5rem;
+      }
+    }
 
 		li {
 			float: left;
@@ -145,10 +148,38 @@ padding: 30px 15px !important;
 		.current {
 			a {
 				color: $alice;
+        border-bottom: 2px solid $alice;
 			}
 		}
 
 	}
+
+  // Grid Area Lang Menu
+
+.lang-menu  {
+  grid-area: lang;
+  list-style-type: none;
+    a {
+      font-size: 2rem;
+    }
+
+  li {
+    float: left;
+    padding: 5px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  // Effect ( nav )
+
+  .current {
+    a {
+      color: $alice;
+    }
+}
+}
 
 // Grid Area Header SEO
 
@@ -193,18 +224,20 @@ padding: 30px 15px !important;
 	grid-gap: 10px;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-areas:
-	"logo logo logo"
-	"nav nav nav"
+	"logo       logo       logo"
+	"nav        nav        nav"
+	"lang       lang       lang"
 	"header-seo header-seo header-seo"
-	"privacy privacy privacy";
+	"privacy    privacy    privacy";
 
 	// 992px window width and more
 
 	@include lg {
 		grid-template-areas:
-		"logo nav nav"
+		"logo       nav        nav"
+    "lang       lang       lang"
 		"header-seo header-seo header-seo"
-		"privacy privacy privacy";
+		"privacy    privacy    privacy";
 	}
 
 }

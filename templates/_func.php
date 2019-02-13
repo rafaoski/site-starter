@@ -278,24 +278,23 @@ function langMenu($page, $root)
         return '';
     }
     $out = '';
-    // language switcher / navigation
-    $out .= "<ul class='lang-menu grid' role='navigation'>";
-    // Start Loop
     foreach (languages() as $language) {
     // is page viewable in this language?
         if (!$page->viewable($language)) {
             continue;
         }
         if ($language->id == user()->language->id) {
-            $out .= "<li class='active'>";
+            $out .= "<li class='current'>";
+            $icon = "<i data-feather='flag'></i>";
         } else {
             $out .= "<li>";
+            $icon = '';
         }
         $url = $page->localUrl($language);
         $hreflang = $root->getLanguageValue($language, 'name');
-        $out .= "<a hreflang='$hreflang' href='$url'>$language->title</a></li>";
+        if($hreflang == 'home') $hreflang = 'x-default';
+        $out .= "<a hreflang='$hreflang' href='$url'>$language->title $icon</a></li>";
     }
-    $out .= "</ul>";
     return $out;
 }
 
