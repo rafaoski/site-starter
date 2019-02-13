@@ -6,11 +6,17 @@
 ### Essentially, this structure uses minimalist CSS framework 
 [Milligram](https://milligram.io/)
 
-### Additionally, you can use the free icon font that are included:
+### Additionally, you can use the icon font that are included:
 [Feather Icons](https://feathericons.com/)  
 
-### Installed Modules
+### Installed Modules:
 [SeoMaestro](https://modules.processwire.com/modules/seo-maestro/) 
+
+### All images ( svg ) on the pages come from:
+[Icofont](https://icofont.com/) 
+
+### In order to speed up the loading of pages, it was used
+[Turbolinks](https://github.com/turbolinks/turbolinks) 
 
 #### How To Install
 1. Download the [zip file](https://github.com/rafaoski/site-starter/archive/master.zip) at Github or clone directly the repo: ```git clone https://github.com/rafaoski/site-starter.git```
