@@ -31,6 +31,7 @@ gwCode(setting('gw-code'));
 ?>
 </head>
 <body class='<?=setting('body-classes')->implode(' ')?>'>
+<!-- HEADER -->
 <header id='header' class="header hero-image" style='background: linear-gradient( rgba(0, 0, 0, 0.91), rgba(2, 35, 50, 0.82) ),
   url("<?=$image ? $image->url : ''?>");
   min-height: 70vh;
@@ -40,53 +41,49 @@ gwCode(setting('gw-code'));
   background-repeat: no-repeat; /* Do not repeat the image */
   background-position: center top;'
 >
-<div class='site-logo'>
-  <?php editItem(pages()->get('/options/'));?>
-  <a href="<?=pages('/')->url;?>">
-    <span class='site-name'><?=setting('site-name')?></span>
-    <?php if(setting('logo')) :?>
-    <img src="<?=setting('logo');?>" alt="<?=setting('site-name')?>"
-    class='logo <?=setting('logo-class');?>' width="60" style='margin-bottom: -10px;'>
-    <?php endif;?>
-    <br>
-    <span class='site-description'><?=setting('site-description')?></span>
-  </a>
-</div><!-- ./site-logo -->
+  <div class='site-logo'>
+    <?php editItem(pages()->get('/options/'));?>
+    <a href="<?=pages('/')->url;?>">
+        <span class='site-name'><?=setting('site-name')?></span>
+        <?php if(setting('logo')) :?>
+        <img src="<?=setting('logo');?>" alt="<?=setting('site-name')?>"
+        class='logo <?=setting('logo-class');?>' width="60" style='margin-bottom: -10px;'>
+        <?php endif;?><br>
+        <span class='site-description'><?=setting('site-description')?></span>
+    </a>
+  </div><!-- ./site-logo -->
 
-<ul class='main-nav'>
-    <?=renderNav(setting('home')->children(), true);?>
-</ul>
+  <ul class='main-nav'>
+      <?=renderNav(setting('home')->children(), true);?>
+  </ul>
 
-<?php if (page()->getLanguages() && modules()->isInstalled("LanguageSupportPageNames")) : ?>
-<ul id="lang-menu" class='lang-menu'>
-  <?=langMenu(page(), pages('/'))?>
-</ul>
-<?php endif; ?>
-
-<div id='header-seo' class='header-seo'>
-<?php if (page() == pages('/')): ?>
-  <h1 class='home-title'>
-    <?=page('meta_title');?>
-<?php else: ?>
-  <h1 class='page-title'>
-    <?=page('title');?> /
+  <?php if (page()->getLanguages() && modules()->isInstalled("LanguageSupportPageNames")) : ?>
+  <ul id="lang-menu" class='lang-menu'>
+    <?=langMenu(page(), pages('/'))?>
+  </ul>
   <?php endif; ?>
-  </h1>
-  <h2 class='meta-title'>
-    <?=page('meta_description');?>
-  </h2>
-<?php if (page() != pages('/')):?>
-  <div id="breadcrumb" style='color: aliceblue; text-align: right; padding: 10px;'>
-    <?=breadCrumb(page());?>
-  </div>
-<?php endif;?>
-</div><!-- #/header-seo -->
 
-<div id='privacy' class='privacy-panel'>
-  <?=privacyPanel(setting('privacy-page'));?>
-</div>
+  <div id='header-seo' class='header-seo'>
+    <h1 id='meta-title' class='meta-title'>
+      <?=page() == pages('/') ? page('meta_title') : page('title');?>
+    </h1>
+    <h2 id='meta-description' class='meta-description'>
+      <?=page('meta_description');?>
+    </h2>
+  <?php if (page() != pages('/')):?>
+    <div id="breadcrumb" style='color: aliceblue; text-align: right; padding: 10px;'>
+      <?=breadCrumb(page());?>
+    </div>
+  <?php endif;?>
+  </div><!-- #/header-seo -->
+
+  <div id='privacy' class='privacy-panel'>
+    <?=privacyPanel(setting('privacy-page'));?>
+  </div>
 
 </header>
+<!-- /HEADER -->
+
 <?php
 // Social Share Buttons ( https://www.addtoany.com/ )
 if (setting('enable-share-buttons')) {

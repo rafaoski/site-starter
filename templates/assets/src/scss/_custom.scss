@@ -77,6 +77,139 @@ img {
   transform: scale(.97);
 }
 
+
+// Grid Area Logo
+
+.site-logo {
+  grid-area: logo;
+  @include center; // _mixins center
+  @include lg { // 992px window width and more
+    margin-left: 0;
+  }
+
+  span.site-name {
+    color: $alice;
+    font-size: 3rem;
+    transition: all .3s ease;
+    @include lg { // 992px window width and more
+      font-size: 4rem;
+    }
+  }
+
+  span.site-description {
+    font-size: 1.7rem;
+    color: rgba($alice, .7);
+    padding-left: 0;
+    transition: all .3s ease;
+    @include lg { // 992px window width and more
+      font-size: 2rem;
+      padding-left: 30px;
+    }
+  }
+
+  &:hover {
+    span.site-name {
+      color: rgba($alice, .7);
+    }
+    span.site-description {
+      color:$alice;
+    }
+  }
+}
+
+// Grid Area Nav
+
+.main-nav {
+  grid-area: nav;
+  list-style-type: none;
+
+  a {
+    font-size: 2rem;
+    @include lg { // 992px window width and more
+        font-size: 2.5rem;
+    }
+  }
+
+  li {
+    float: left;
+    padding: 5px;
+  }
+
+  // Effect ( nav )
+
+  .current {
+    a {
+      color: $alice;
+      border-bottom: 2px solid $alice;
+    }
+  }
+
+}
+
+// Grid Area Lang Menu
+
+.lang-menu  {
+grid-area: lang;
+list-style-type: none;
+  a {
+    font-size: 2rem;
+  }
+
+li {
+  float: left;
+  padding: 5px;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Effect ( nav )
+
+.current {
+  a {
+    color: $alice;
+  }
+}
+}
+
+// Grid Area Header SEO
+
+.header-seo {
+  grid-area: header-seo;
+// Meta Title
+  .meta-title {
+    color: $alice;
+    text-align: center;
+    font-size: 4rem;
+    @include lg { // 992px window width and more
+      font-size: 6rem;
+    }
+  }
+// Meta Description
+  .meta-description {
+    font-size: 2rem;
+    color: rgba($alice, .7);
+    @include lg { // 992px window width and more
+      font-size: 2.5rem;
+    }
+  }
+}
+
+// Grid Area Privacy
+
+.privacy-panel {
+  grid-area: privacy;
+  a {
+    font-size: 2rem;
+        padding-bottom: 10px;
+    span {
+      color: rgba($alice, .7);
+    }
+  }
+
+}
+
 // Header
 
 header {
@@ -85,138 +218,6 @@ padding: 30px 15px !important;
 @include lg { // 992px window width and more
 	background-position-y: -100px !important;
 }
-
-	// Grid Area Logo
-
-	.site-logo {
-		grid-area: logo;
-    @include center; // _mixins center
-    @include lg { // 992px window width and more
-    	margin-left: 0;
-		}
-
-		span.site-name {
-			color: $alice;
-			font-size: 3rem;
-			transition: all .3s ease;
-			@include lg { // 992px window width and more
-				font-size: 4rem;
-			}
-		}
-
-		span.site-description {
-			font-size: 1.7rem;
-			color: rgba($alice, .7);
-			padding-left: 0;
-			transition: all .3s ease;
-			@include lg { // 992px window width and more
-				font-size: 2rem;
-				padding-left: 30px;
-			}
-		}
-
-		&:hover {
-			span.site-name {
-				color: rgba($alice, .7);
-			}
-			span.site-description {
-				color:$alice;
-			}
-		}
-	}
-
-	// Grid Area Nav
-
-	.main-nav {
-		grid-area: nav;
-		list-style-type: none;
-
-    a {
-      font-size: 2rem;
-      @include lg { // 992px window width and more
-          font-size: 2.5rem;
-      }
-    }
-
-		li {
-			float: left;
-			padding: 5px;
-		}
-
-		// Effect ( nav )
-
-		.current {
-			a {
-				color: $alice;
-        border-bottom: 2px solid $alice;
-			}
-		}
-
-	}
-
-  // Grid Area Lang Menu
-
-.lang-menu  {
-  grid-area: lang;
-  list-style-type: none;
-    a {
-      font-size: 2rem;
-    }
-
-  li {
-    float: left;
-    padding: 5px;
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  // Effect ( nav )
-
-  .current {
-    a {
-      color: $alice;
-    }
-}
-}
-
-// Grid Area Header SEO
-
-	.header-seo {
-		grid-area: header-seo;
-
-    .home-title, .page-title {
-      color: $alice;
-      text-align: center;
-      font-size: 4rem;
-      @include lg { // 992px window width and more
-        font-size: 6rem;
-      }
-    }
-
-		.meta-title {
-	    font-size: 2rem;
-			color: rgba($alice, .7);
-			@include lg { // 992px window width and more
-        font-size: 2.7rem;
-      }
-		}
-	}
-
-	// Grid Area Privacy
-
-	.privacy-panel {
-		grid-area: privacy;
-		a {
-			font-size: 2rem;
-          padding-bottom: 10px;
-			span {
-				color: rgba($alice, .7);
-			}
-		}
-
-	}
 
 	// Content Header Dispaly Grid
 
