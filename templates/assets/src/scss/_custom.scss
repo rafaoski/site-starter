@@ -246,9 +246,15 @@ padding: 30px 15px !important;
 // Breadcrumbs
 
 .breadcrumbs {
+  color: aliceblue;
+  text-align: center;
+  padding: 10px;
 	padding-left: 20px;
 	margin-top: 20px;
 	font-size: 2rem;
+  @include md { // 992px window width and more
+    text-align: right;
+  }
 }
 
 // Grid Area Sidebar

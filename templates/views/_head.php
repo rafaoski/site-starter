@@ -71,7 +71,7 @@ gwCode(setting('gw-code'));
       <?=page('meta_description');?>
     </h2>
   <?php if (page() != pages('/')):?>
-    <div id="breadcrumb" style='color: aliceblue; text-align: right; padding: 10px;'>
+    <div id="breadcrumbs" class='breadcrumbs'>
       <?=breadCrumb(page());?>
     </div>
   <?php endif;?>
