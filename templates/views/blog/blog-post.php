@@ -8,13 +8,15 @@ $user = pages()->findOne("template=blog-author, get_user.id=$page->createdUser")
 	<link rel="stylesheet" href="<?=urls()->FieldtypeComments?>comments.css">
 </head>
 
-<div id='content-body'>
-	<div id="breadcrumb" pw-prepend>
+<div id="breadcrumb" pw-before>
+	<div id="blog-info">
 		<p class='blog-info' style='color: aliceblue; margin-bottom: 10px; font-size: 1.7rem; text-align: left;'>
 			<?=blogInfo(page(), $user);?>
 		</p>
 	</div>
+</div>
 
+<div id='content-body'>
 <?=page()->body;?>
 <!-- link to prev next blog post -->
 
@@ -47,6 +49,6 @@ if($img) {
 	$img = $img->width(600);
 	echo "<img src='$img->url' alt='$img->description'>";
 }
-?>
-  <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
+// Blog Links
+wireIncludeFile('views/parts/_blog-links.php'); ?>
 </div>
