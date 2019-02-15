@@ -34,10 +34,6 @@ wireIncludeFile("views/contact/_c-form",
     ]
 );?>
 
-<br>
-
-<h2><?=page('meta_description');?></h2>
-
 <?php if($latitude && $longitude) :?>
 
     <div id='map'></div>
