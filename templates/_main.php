@@ -17,6 +17,12 @@ wireincludeFile("views/_head.php");
 ?>
   <div id='main' class="main">
 
+    <div id='content-body' class="content-body container">
+      <?php // Basic Page Body
+        echo page()->body;
+      ?>
+    </div><!-- #content-body -->
+
     <aside id="sidebar" class="sidebar container">
 
       <form id='search' class='s-form' style='padding: 10px; margin-bottom: 0;'
@@ -24,14 +30,13 @@ wireincludeFile("views/_head.php");
             <label for="search-i"><?=setting('search-placeholder')?>
             <input id='search-i' type='text' name='q' class='s-input' placeholder='<?=setting('search-placeholder')?>&hellip;' required></label>
       </form>
-
       <?php // Page Sidebar
         if (page()->sidebar): ?>
         <div class='sidebar-page-item' style='margin-top: 10px;'>
           <?=page()->sidebar;?>
         </div>
       <?php endif;
-      // Sidebars from Options Page
+      // Sidebars ( Options Page )
       foreach (setting('options')->sidebars as $sidebar) :?>
         <div class='sidebar-item <?=$sidebar->name;?>' style='margin-top: 15px;'>
           <h3 class='sidebar-heading'>
@@ -44,12 +49,6 @@ wireincludeFile("views/_head.php");
       <?php endforeach; ?>
     </aside>
 
-    <div id='content-body' class="content-body container">
-      <?php // Basic Page Body
-        echo page()->body;
-      ?>
-    </div>
-
-  </div><!-- #/main -->
+  </div><!-- #main -->
 
 <?php wireincludeFile("views/_foot.php"); ?>
