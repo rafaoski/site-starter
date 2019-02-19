@@ -64,11 +64,11 @@ setting([
          urls('templates') . "assets/css/app.css"
     ]),
 // Get Scripts
-      'js-files' => WireArray([
-        // urls('templates') . "assets/js/app.js",
-        urls('templates') . "assets/js/feather.min.js",
-      ]),
-      'turbolinks' => urls('templates') . "assets/js/turbolinks.js",
+    'js-files' => WireArray([
+      // urls('templates') . "assets/js/app.js",
+      urls('templates') . "assets/js/feather.min.js",
+    ]),
+    'turbolinks' => urls('templates') . "assets/js/turbolinks.js",
 // Basic Transate
     'search-placeholder' => __('Search'),
     'search-label' => __('search'),
@@ -78,6 +78,10 @@ setting([
     'more-pages' => __('More Pages'),
     'found-pages' => __("Found %d page(s)."),
     'no-found' =>  __('Sorry, no results were found.'),
+// Contact
+    'contact-form' => __('Contact Form'),
+    'contact-info' => __('Contact Info'),
+    'more-contact' => __('More Contact Information'),
 // Blog Translate ( views/blog/all-files* )
     'select-archives' => __('Select Archives'),
     'archives-date' => __('Date -- %1s/%2s'),

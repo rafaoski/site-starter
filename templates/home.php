@@ -25,3 +25,15 @@ $sections = pages('/options/')->home_sections;
   <?php endforeach;
                   endif; ?>
 </div><!-- #/content-body -->
+
+<div id="sidebar" pw-append>
+  <div class="contact-info medium-panel">
+    <?php
+      $contact = pages()->get("template=contact");
+      wireIncludeFile('views/contact/_contact-info.php', ['item' => $contact]);
+    ?>
+    <a href="<?=$contact->url;?>">
+      <?=setting('more-contact');?> &raquo;
+    </a>
+  </div>
+</div>

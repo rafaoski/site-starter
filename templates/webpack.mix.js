@@ -28,7 +28,7 @@ const mix = require('laravel-mix');
 mix.js('assets/src/js/app.js', 'assets/js')
 .sass('assets/src/scss/app.scss', 'assets/css')
    .browserSync({
-      proxy: 'http://localhost/proc-starter/', // Your local installation processwire
+      proxy: 'http://start.test/', // Your local installation processwire
       files: // Watch this folders
          [
             "./assets/css/*.css",

@@ -1,9 +1,9 @@
 <?php namespace ProcessWire;?>
 
-<div class="blog-items" style='display: flex; flex-wrap: wrap; justify-content: space-around;'>
+<div class="blog-items flex-center" style='justify-content: space-around;'>
 <?php foreach ($section->children("limit=2") as $item):
   $img = $item->images->first();?>
-  <div class='item-content' style='width: 400px'>
+  <div class='item-content' style='width: 500px'>
     <h3 style='margin-bottom: 5px;'>
       <?=$item->title;?>
     </h3>

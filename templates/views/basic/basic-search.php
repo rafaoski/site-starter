@@ -44,18 +44,19 @@ $style = "font-size: 5rem; text-align: center;";
 }?>
 </div>
 
+<?php
+// did we find any matches?
+if (count($matches)):?>
 <div id='content-body'>
-    <?php
-    // did we find any matches?
-    if (count($matches)) {
-
+<?php
         echo '<ul>';
-
-        foreach ($matches as $key) {
-            echo "<li><a href='$key->url'>$key->title</a></li>";
-        }
-
+          foreach ($matches as $key) {
+              echo "<li><a href='$key->url'>$key->title</a></li>";
+          }
         echo '</ul>';
-    }
     ?>
 </div><!-- /#content-body -->
+
+<?php else: ?>
+<div id='content-body' pw-remove></div>
+<?php endif; ?>

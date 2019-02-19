@@ -15,6 +15,6 @@ $tag = pages()->get("template=blog-posts")->children("tags=$page, limit=12");
   <?=pagination($tag);?>
 </div>
 
-<div id='search' pw-after>
+<div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
 </div>

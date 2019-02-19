@@ -22,15 +22,16 @@
 // @import "~milligram-scss/src/milligram.scss";
 
 // Breakpoints
-@import "mixins.scss";
-
 @import "breakpoints.scss";
 
 // Custom Variables
 @import "variables.scss";
 
-// Custom Variables
+// Ckeditor
 @import "ckeditor.scss";
+
+// Mixins
+@import "mixins.scss";
 
 // Custom Style
 @import "custom.scss";

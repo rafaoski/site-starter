@@ -16,34 +16,13 @@ $longitude = page()->longitude;
 $marker_text = page()->marker_text;
 ?>
 
-<!-- CONTENT BODY -->
-<div id='content-body'>
-
-<?=page()->body;?>
-
-<?php // Include contact form
-wireIncludeFile("views/contact/_c-form",
-    [
-    'save_message' => $save_message, // true or false
-    'contact_page' => page(), // Get Contact Page to save items pages('/contact/')
-    'contact_item' => 'contact-item', // Template to create item ( It must have a body field )
-    'mail_to' => $contact_mail ?: 'user@gmail.com', // Send To Mail
-    'email_subject' => $email_subject, // Mail Subject
-    'privacy_page' => $privacy_page, // Privacy Policy Page
-    // 'from_page' => $from_page // Get Url Page
-    ]
-);?>
-
-<?php if($latitude && $longitude) :?>
-
-    <div id='map'></div>
-
-<?php endif; ?>
-
-</div><!-- /#content-body -->
-
+<!-- STYLE -->
 <head id='html-head' pw-append>
-<style>
+<?php if (!$user->isLoggedin() && setting('enable-turbolinks')) {
+echo "<meta name='turbolinks-visit-control' content='reload'>\n";
+}
+?>
+  <style>
       .hide-robot {
           display: none;
       }
@@ -52,7 +31,73 @@ wireIncludeFile("views/contact/_c-form",
           box-sizing: unset;
       }
   </style>
-</head>
+</head><!-- /STYLE -->
+
+<!-- CONTENT -->
+<div id='content-body'>
+
+<?php if (page('meta_title')): ?>
+<div class='medium-panel'>
+  <i data-feather='info' style='width: 45px; height: 45px; stroke-width: 1px; color: #1c98d5;'></i>
+  <h3><?=page('meta_title');?></h3>
+</div>
+<?php endif; ?>
+
+<div class="contact-body" style='margin-top: 20px;'>
+  <?php // INclude contact form
+  wireIncludeFile("views/contact/_c-form",
+      [
+      'save_message' => $save_message, // true or false
+      'contact_page' => page(), // Get Contact Page to save items pages('/contact/')
+      'contact_item' => 'contact-item', // Template to create item ( It must have a body field )
+      'mail_to' => $contact_mail ?: 'user@gmail.com', // Send To Mail
+      'email_subject' => $email_subject, // Mail Subject
+      'privacy_page' => $privacy_page, // Privacy Policy Page
+      // 'from_page' => $from_page // Get Url Page
+      ]
+  );?>
+</div>
+
+<?=page()->body;?>
+
+</div><!-- /CONTENT -->
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+<!-- CONTACT INFO -->
+  <div class="contact-info medium-panel">
+    <?php
+      // Get Last Image ( https://processwire.com/docs/fields/images/ )
+      $image = page()->images ? page()->images->last() : '';
+      wireIncludeFile('views/contact/_contact-info.php', ['item' => page()]);
+    ?>
+  </div><!-- /CONTACT INFO -->
+
+<!-- CONTACT SIDEBAR -->
+  <div class="contact-sidebar" style='
+     background: linear-gradient( rgba(0, 0, 0, 0.91), rgba(143, 64, 4, 0.65) ),
+     url("<?=$image ? $image->url : ''?>");
+     background-size: cover; /* Resize the background image to cover the entire container */
+     background-repeat: no-repeat; /* Do not repeat the image */
+     background-position: center center;
+     color: aliceblue;
+     margin-top: 15px;
+     padding: 10px;
+     display: flex; flex-direction: column; align-items: center; justify-content: center;'
+   >
+
+    <?=page()->sidebar;?>
+
+  </div><!-- /CONTACT SIDEBAR -->
+
+</div><!-- /SIDEBAR -->
+
+<!-- MAP -->
+<?php if($latitude && $longitude) :?>
+<div id="footer" pw-before>
+      <div id='map'></div>
+</div>
+<?php endif; ?><!-- /MAP -->
 
 <?php if($latitude && $longitude) :?>
 <pw-region id="bottom-region">

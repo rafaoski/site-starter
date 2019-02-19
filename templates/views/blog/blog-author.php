@@ -15,7 +15,7 @@ if( !count($posts) ) {
 	<?=pagination($posts); ?>
 </div>
 
-<div id='search' pw-after>
+<div id='sidebar' pw-prepend>
 <?php
 $img = page()->images->first();
 if($img) {

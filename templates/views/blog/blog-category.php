@@ -15,6 +15,6 @@ $category = pages()->get("template=blog-posts")->children("categories=$page, lim
   <?=pagination($category);?>
 </div>
 
-<div id='search' pw-after>
+<div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
 </div>

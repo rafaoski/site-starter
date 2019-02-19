@@ -48,12 +48,12 @@ if ($input->firstname) {
     session()->redirect('./');
 }
 
-// Sanitize Input 
+// Sanitize Input
   $m_name = $sanitizer->text($input->post->name);
   $m_from = $sanitizer->email($input->post->email);
   $m_message = $sanitizer->text($input->post->message);
 
-// Fill fields correctly 
+// Fill fields correctly
   if (!$m_name or !$m_from  or !$m_message or !input()->post->accept_message) {
         $session->Message = "<h3>$fill_fields</h3>";
         session()->redirect('./');
@@ -99,7 +99,7 @@ if ($input->firstname) {
             <blockquote>
                 <h4><b>$label_name:</b> $m_name</h4>
                 <h4><b>$label_email:</b>  $m_from</h4>
-                <h4><b>$label_message:</b></h4> 
+                <h4><b>$label_message:</b></h4>
                 <p>$m_message</p>
             </blockquote>";
 
@@ -113,34 +113,38 @@ else :
         echo "<a href='./' class='button'>$show_form</a>";
 // Show Basic Contact Form
     } else {
-// CSRF Tokens        
+// CSRF Tokens
     $token_name = $this->session->CSRF->getTokenName();
     $token_value = $this->session->CSRF->getTokenValue(); ?>
 
         <form id='contact-form' class='c-form' action='./' method='post'>
-
-          <input type='hidden' id='_post_token' name='<?=$token_name?>' value='<?=$token_value?>'>
-
-          <!-- Create fields for the honeypot -->
-          <input name='firstname' placeholder='<?=$not_fill?>' type='text' id='firstname' class='hide-robot'>
-          <!-- honeypot fields end -->
-
-          <label class='label-name'>* <?=$label_name?></label>
-          <input name='name' placeholder='<?=$label_name?>' autocomplete='off' type='text' required>
-        
-          <label class='label-email'>* <?=$label_email?></label>
-          <input name='email' placeholder='<?=$label_email?>' type='email' required>
-        
-          <label class='label-message'>* <?=$label_message?></label>
-          <textarea name='message' placeholder='<?=$label_message?>' rows='7' required></textarea>
-
-          <label class='label-check'>
-          <input class='accept-message' name='accept_message' type='checkbox' required>
-          <small><?=$label_accept?> <a href='<?=$privacy_page?>'><?=$label_privacy?></a>.</small></label>
-
-          <input name='submit' value='<?=$submit?>' type='submit'>
-          <button type='reset'><?=$reset?></button>
-
+          <fieldset style='border: 3px solid; padding: 30px;'>
+<!-- LEGEND -->
+            <legend>
+              <h3 style='font-size: 4rem; margin: 0;'><?=setting('contact-form');?></h3>
+            </legend>
+<!-- CSRF -->
+            <input type='hidden' id='_post_token' name='<?=$token_name?>' value='<?=$token_value?>'>
+<!-- HONEYPOT -->
+            <input name='firstname' placeholder='<?=$not_fill?>' type='text' id='firstname' class='hide-robot'>
+<!-- NAME -->
+            <label class='label-name'>* <?=$label_name?></label>
+            <input name='name' placeholder='<?=$label_name?>' autocomplete='off' type='text' required>
+<!-- E-MAIL -->
+            <label class='label-email'>* <?=$label_email?></label>
+            <input name='email' placeholder='<?=$label_email?>' type='email' required>
+<!-- MESSAGE -->
+            <label class='label-message'>* <?=$label_message?></label>
+            <textarea name='message' placeholder='<?=$label_message?>' rows='7' required></textarea>
+<!-- ACCEPT PRIVACY POLICY -->
+            <label class='label-check'>
+            <input class='accept-message' name='accept_message' type='checkbox' required>
+            <small><?=$label_accept?> <a href='<?=$privacy_page?>'><?=$label_privacy?></a>.</small></label>
+<!-- SUBMIT BUTTON -->
+            <input name='submit' value='<?=$submit?>' type='submit'>
+<!-- RESET BUTTON -->
+            <button type='reset'><?=$reset?></button>
+          </fieldset>
         </form>
 
 <?php }

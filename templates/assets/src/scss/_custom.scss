@@ -43,12 +43,6 @@ blockquote * {
   font-size: 2.5rem;
 }
 
-// Center elements
-
-.center {
-  @include center; // _mixins center
-}
-
 // Responsive Image
 
 img {
@@ -77,11 +71,27 @@ img {
   transform: scale(.97);
 }
 
+// Center elements
 
-// Grid Area Logo
+.center {
+  @include center; // _mixins center
+}
+
+// Flex Center
+
+.flex-center {
+  @include flex_center; // _mixins center
+}
+
+// Medium Panel
+
+.medium-panel {
+  @include medium_panel; // _mixins.scss ( medium_panel )
+}
+
+// Logo
 
 .site-logo {
-  grid-area: logo;
   @include center; // _mixins center
   @include lg { // 992px window width and more
     margin-left: 0;
@@ -117,10 +127,16 @@ img {
   }
 }
 
-// Grid Area Nav
+// Nav
+
+.navs {
+  margin-top: 20px;
+  @include lg { // 992px window width and more
+    margin-top: 0;
+  }
+}
 
 .main-nav {
-  grid-area: nav;
   list-style-type: none;
 
   a {
@@ -134,22 +150,18 @@ img {
     float: left;
     padding: 5px;
   }
-
   // Effect ( nav )
-
   .current {
     a {
       color: $alice;
       border-bottom: 2px solid $alice;
     }
   }
-
 }
 
-// Grid Area Lang Menu
+// Lang Menu
 
 .lang-menu  {
-grid-area: lang;
 list-style-type: none;
   a {
     font-size: 2rem;
@@ -163,84 +175,74 @@ li {
     height: 20px;
   }
 }
-
 // Effect ( nav )
-
-.current {
-  a {
-    color: $alice;
+  .current {
+    a {
+      color: $alice;
+    }
   }
 }
-}
 
-// Grid Area Header SEO
+//  Header SEO
 
 .header-seo {
-  grid-area: header-seo;
-// Meta Title
-  .meta-title {
+  .meta-title { // Meta Title
     color: $alice;
     text-align: center;
     font-size: 4rem;
+    margin-top: 20px;
     @include lg { // 992px window width and more
-      font-size: 6rem;
+      font-size: 9rem;
     }
   }
-// Meta Description
-  .meta-description {
+  .meta-description { // Meta Description
     font-size: 2rem;
     color: rgba($alice, .7);
+    margin-top: 20px;
     @include lg { // 992px window width and more
       font-size: 2.5rem;
     }
   }
 }
 
-// Grid Area Privacy
+// External Links
 
-.privacy-panel {
-  grid-area: privacy;
-  a {
-    font-size: 2rem;
-        padding-bottom: 10px;
-    span {
-      color: rgba($alice, .7);
+.external-links {
+  ul {
+    @include flex_center;
+    margin-bottom: 0;
+    li {
+      list-style: none;
+      margin: 10px;
+    }
+      a {
+        border-radius: 90px;
+        display: block;
+        border-bottom: 2px solid;
+        border-left: 2px solid;
+        padding: 8px 8px;
+        width: 50px;
+        height: 50px;
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+        &::before {
+          border-bottom: 0;
+        }
+      }
+    @include lg { // 992px window width and more
+      a {
+        padding: 15px 15px;
+        width: 90px;
+        height: 90px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
     }
   }
-
-}
-
-// Header
-
-header {
-padding: 30px 15px !important;
-
-@include lg { // 992px window width and more
-	background-position-y: -100px !important;
-}
-
-	// Content Header Dispaly Grid
-
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-areas:
-	"logo       logo       logo"
-	"nav        nav        nav"
-	"lang       lang       lang"
-	"header-seo header-seo header-seo"
-	"privacy    privacy    privacy";
-
-	// 992px window width and more
-
-	@include lg {
-		grid-template-areas:
-		"logo       nav        nav"
-    "lang       lang       lang"
-		"header-seo header-seo header-seo"
-		"privacy    privacy    privacy";
-	}
-
 }
 
 // Breadcrumbs
@@ -248,57 +250,69 @@ padding: 30px 15px !important;
 .breadcrumbs {
   color: aliceblue;
   text-align: center;
-  padding: 10px;
-	padding-left: 20px;
-	margin-top: 20px;
 	font-size: 2rem;
-  @include md { // 992px window width and more
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @include lg { // 992px window width and more
     text-align: right;
   }
 }
 
-// Grid Area Sidebar
+// Privacy Panel
 
-.sidebar { // https://developer.mozilla.org/en-US/docs/Web/CSS/grid
-	grid-area: sidebar;
-  .sidebar-heading {
-    margin-bottom: 5px;
-    border-bottom: 10px solid tomato;
-    padding: 5px;
+.privacy-panel {
+  margin-top: 20px;
+  a {
+    font-size: 2rem;
+    padding-bottom: 10px;
+    span {
+      color: rgba($alice, .7);
+    }
+  }
+
+}
+
+// Main Area ( Flex Content )
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  a {
+    color: $black;
+  }
+
+  .content-body {
+    padding: 10px;
     width: 100%;
-    @include md { // 992px window width and more
-        width: 80%;
+    order: 1;
+  }
+  .sidebar {
+    padding: 10px;
+    width: 100%;
+    order: 2;
+  }
+  @include lg { // 992px window width and more
+    .content-body {
+      order: 2;
+      width: auto;
+    }
+    .sidebar {
+      width: 30%;
+      order: 1;
     }
   }
 }
 
-// Grid Area Content
+// sidebar Headings
 
-.content-body {
-	grid-area: content;
-}
-
-// Main Grid Areas
-
-.main {
-	padding: 10px; // For mobile
-  a {
-    color: $black;
-    font-weight: bold;
+.sidebar-heading {
+  margin-bottom: 5px;
+  border-bottom: 10px solid tomato;
+  padding: 5px;
+  width: 100%;
+  @include lg { // 992px window width and more
+      width: 80%;
   }
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-areas:
-	"content content content content content content"
-	"sidebar sidebar sidebar sidebar sidebar sidebar";
-
-	// 992px window width and more
-	@include lg {
-		padding: 30px;
-		grid-template-areas:
-		"sidebar sidebar content content content content"
-	}
 }
 
 // Home Sections
@@ -333,6 +347,19 @@ padding: 30px 15px !important;
 	p {
 		margin: 0;
 	}
+}
+
+/* Pages */
+
+// Blog Post
+#blog-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  p {
+    color: $alice;
+    font-size: 2rem;
+    text-align: left;
+  }
 }
 
 // Button Edit Page

@@ -7,6 +7,5 @@
         'maxLength' => 400,
         'visible' => true,
         'keepTags' => ['blockquote'],
-        'keepFormatTags' => true,
-        'more' => ' ...'
+        'keepFormatTags' => true
     ]);

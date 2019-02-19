@@ -17,6 +17,31 @@ return editItem($item) . $out;
 
 /**
  *
+ * @param PageArray $external_links
+ * @param array $options
+ *
+ */
+function externalLink(PageArray $external_links, array $options = []) {
+    $style = (isset($options['style']) && !empty($options['style'])) ? "style='{$options['style']}'" : '';
+    $class = (isset($options['class']) && !empty($options['class'])) ? "class='{$options['class']}'" : '';
+      $out = '';
+      foreach ($external_links as $link) {
+        $icon = $link->text_1 ? "$link->text_1" : '';
+        $title = $link->text_3 ?  "title='$link->text_3'" : '';
+        $li_class = "external_link-" . sanitizer()->pageName($link->text_1, true);
+        $target = $link->checkbox ?  "target='_blank'" : '';
+        $no_follow = $link->checkbox_1 ?  "rel='nofollow'" : '';
+        $all_items = "$title $target $no_follow";
+          if($link->text_1 == 'rss' && $link->url_1 == '') $link->url_1 = pages()->get("template=blog-rss")->url;
+            $out .= "<li><a $class $style href='$link->url_1' $all_items>
+            <i style='stroke-width: 1px;' data-feather='$icon' class='$li_class'></i>
+            $link->text_2 </a></li>";
+      }
+      return $out;
+    }
+
+/**
+ *
  * @param array $opt https://www.addtoany.com/
  *
  */
@@ -436,7 +461,12 @@ function blogArchive($startDate = 2018, $option = false)
     return $out;
 }
 
-
+/**
+ *
+ * @param Page $post
+ * @param User $user
+ *
+ */
 function blogInfo($post, $user) {
 	$out = '';
 	$count_comments = countComments($post, setting('enable-comments'));

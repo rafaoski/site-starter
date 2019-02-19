@@ -14,11 +14,11 @@ $user = pages()->findOne("template=blog-author, get_user.id=$post->createdUser")
     background-position: center top;'
 >
 <h3 style='margin-bottom: 10px;'>
-<?=$post->title;?>
 <?php
 // Edit Button
-editItem($post, 'margin-top: 10px; color: #1c98d5;');
+  echo editItem($post, 'margin-top: 10px; color: #1c98d5;');
 ?>
+<?=$post->title;?>
 </h3>
 <p class='blog-info' style='color: aliceblue; margin-bottom: 10px; font-size: 1.7rem;'>
 <?=blogInfo($post, $user);?>

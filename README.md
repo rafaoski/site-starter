@@ -13,7 +13,8 @@
 [Feather Icons](https://feathericons.com/)  
 
 ### All images ( svg ) on the pages come from:
-[Icofont](https://icofont.com/) 
+[Icofont](https://icofont.com/)  
+[Ionicons](https://ionicons.com/) 
 
 ### In order to speed up the loading of pages, it was used:
 [Turbolinks](https://github.com/turbolinks/turbolinks) 
@@ -61,3 +62,4 @@ On completion, use the command <code><b>npm run production</b></code> to build s
 [Turbolinks](https://github.com/turbolinks/turbolinks)  
 [Feather Icons](https://feathericons.com/)  
 [Icofont](https://icofont.com/)  
+[Ionicons](https://ionicons.com/)

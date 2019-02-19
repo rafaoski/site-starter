@@ -8,9 +8,9 @@ $user = pages()->findOne("template=blog-author, get_user.id=$page->createdUser")
 	<link rel="stylesheet" href="<?=urls()->FieldtypeComments?>comments.css">
 </head>
 
-<div id="breadcrumb" pw-before>
+<div id="breadcrumbs" pw-before>
 	<div id="blog-info">
-		<p class='blog-info' style='color: aliceblue; margin-bottom: 10px; font-size: 1.7rem; text-align: left;'>
+		<p>
 			<?=blogInfo(page(), $user);?>
 		</p>
 	</div>
@@ -20,7 +20,7 @@ $user = pages()->findOne("template=blog-author, get_user.id=$page->createdUser")
 <?=page()->body;?>
 <!-- link to prev next blog post -->
 
-<div class="nav-page" style='display: flex; flex-wrap: wrap; justify-content: space-around; padding: 20px;'>
+<div class="nav-page flex-center" style='margin: 20px; font-weight: bold; justify-content: space-around;'>
 	<?=prNx(page());?>
 </div>
 
@@ -31,7 +31,7 @@ $links = page()->links();
 if ($links->count()): ?>
 <h3><?=setting('also-like');?></h3>
 <ul>
- <?=$links->each("<li><a href={url}>{title}</a></li>");?>
+ <?=$links->each("<li><a style='font-weight: bold;' href={url}>{title}</a></li>");?>
 </ul>
 <?php endif;
 // IF Enable Comments
@@ -42,7 +42,7 @@ echo blogComments(page(), 16);
 ?>
 </div>
 
-<div id='search' pw-after>
+<div id='sidebar' pw-prepend>
 <?php
 $img = page()->images->first();
 if($img) {
