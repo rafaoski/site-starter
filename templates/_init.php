@@ -58,7 +58,7 @@ setting([
         'page-' . page()->id,
     ]),
 // Privacy Policy Page
-    'privacy-page' => pages("/privacy-policy/"),
+    'privacy-page' => pages()->get("template=basic-privacy"),
 // Get Styles
     'css-files' => WireArray([
          urls('templates') . "assets/css/app.css"
