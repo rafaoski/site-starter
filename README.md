@@ -44,6 +44,7 @@ Now, boot up the dev server <code><b>npm run watch</b></code>, and you're all se
 On completion, use the command <code><b>npm run production</b></code> to build styles and scripts in the dist folder  
 
 #### Simple Usage ( Basic Command )
+
 <ul>
 <li><b>Run</b> <code>npm install</code></li>
 <li><b>Watch</b> <code>npm run watch</code></li>  
