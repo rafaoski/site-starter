@@ -7,22 +7,39 @@ $user = pages()->findOne("template=blog-author, get_user.id=$page->createdUser")
 	<script src='<?=urls()->FieldtypeComments?>comments.min.js' defer></script>
 	<link rel="stylesheet" href="<?=urls()->FieldtypeComments?>comments.css">
 </head>
-
+<!-- BREADCRUMBS -->
 <div id="breadcrumbs" pw-before>
 	<div id="blog-info">
 		<p>
 			<?=blogInfo(page(), $user);?>
 		</p>
 	</div>
+</div><!-- /BREADCRUMBS -->
+
+<!-- CONTENT -->
+<div id='content-body'>
+
+<!-- SOCIAL SHARE BUTTONS -->
+<div style='margin-top: 20px;'>
+	<?php
+	// Social Share Buttons
+	if (setting('enable-share-buttons')) {
+		$share_btn = modules()->MarkupSocialShareButtons->render();
+		echo str_replace("MarkupSocialShareButtons cf", "m-social-post flex-center", $share_btn);
+	}
+	?><!-- SOCIAL SHARE BUTTONS -->
 </div>
 
-<div id='content-body'>
-<?=page()->body;?>
-<!-- link to prev next blog post -->
 
+<!-- BLOG POST -->
+<?php
+wireIncludeFile('views/parts/_blog-post.php', ['post' => page()]);
+?><!-- BLOG POST -->
+
+<!-- PREVIOUS NEXT BLOG POST -->
 <div class="nav-page flex-center" style='margin: 20px; font-weight: bold; justify-content: space-around;'>
 	<?=prNx(page());?>
-</div>
+</div><!-- /PREVIOUS NEXT BLOG POST -->
 
 <?php
 // https://processwire.com/blog/posts/processwire-3.0.107-core-updates/
@@ -40,8 +57,9 @@ if(setting('enable-comments')) {
 echo blogComments(page(), 16);
 }
 ?>
-</div>
+</div><!-- /CONTENT -->
 
+<!-- SIDEBAR -->
 <div id='sidebar' pw-prepend>
 <?php
 $img = page()->images->first();
@@ -51,4 +69,4 @@ if($img) {
 }
 // Blog Links
 wireIncludeFile('views/parts/_blog-links.php'); ?>
-</div>
+</div><!-- /SIDEBAR -->

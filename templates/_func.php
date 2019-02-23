@@ -33,53 +33,12 @@ function externalLink(PageArray $external_links, array $options = []) {
         $no_follow = $link->checkbox_1 ?  "rel='nofollow'" : '';
         $all_items = "$title $target $no_follow";
           if($link->text_1 == 'rss' && $link->url_1 == '') $link->url_1 = pages()->get("template=blog-rss")->url;
-            $out .= "<li><a $class $style href='$link->url_1' $all_items>
-            <i style='stroke-width: 1px;' data-feather='$icon' class='$li_class'></i>
+            $out .= "<li class='$li_class hover'><a $class $style href='$link->url_1' $all_items>
+            <i style='stroke-width: 1px;' data-feather='$icon'></i>
             $link->text_2 </a></li>";
       }
       return $out;
     }
-
-/**
- *
- * @param array $opt https://www.addtoany.com/
- *
- */
-function toAny($opt = ['t','f','g-p','l','r','e','g-m'])
-{
-    $out = '';
-    $edit = editItem(pages()->get('/options/'), 'right: 15px; top: 100px; position: fixed;');
-      $out .= "<!-- AddToAny BEGIN -->
-      <div class='a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style' style='right:0px; top:150px; background-color: #2e2d2d99;'>
-      $edit
-      <a class='a2a_dd' href='https://www.addtoany.com/share'></a>";
-    if (in_array('f', $opt)) {
-        $out .= "<a class='a2a_button_facebook'></a>";
-    }
-    if (in_array('t', $opt)) {
-        $out .= "<a class='a2a_button_twitter'></a>";
-    }
-    if (in_array('g-p', $opt)) {
-        $out .= "<a class='a2a_button_google_plus'></a>";
-    }
-    if (in_array('l', $opt)) {
-        $out .= "<a class='a2a_button_linkedin'></a>";
-    }
-    if (in_array('r', $opt)) {
-        $out .= "<a class='a2a_button_reddit'></a>";
-    }
-    if (in_array('e', $opt)) {
-        $out .= "<a class='a2a_button_email'></a>";
-    }
-    if (in_array('g-m', $opt)) {
-        $out .= "<a class='a2a_button_google_gmail'></a>";
-    }
-      $out .= "</div>
-      <script src='https://static.addtoany.com/menu/page.js' defer></script>
-      <!-- AddToAny END -->";
-      return $out;
-}
-
 
 /**
  *
@@ -525,8 +484,8 @@ function pagination($items, $style = 'display: flex; list-style: none; justify-c
 {
 if(!count($items)) return;
 $out = $items->renderPager(array(
-        'nextItemLabel' => __('Next') . " &raquo;",
-        'previousItemLabel' => "&laquo; " . __('Previous'),
+        'nextItemLabel' => setting('next') . " <i data-feather='arrow-right'></i>",
+        'previousItemLabel' => "<i data-feather='arrow-left'></i> " . setting('previous'),
         'listMarkup' => "<ul class='MarkupPagerNav' style='$style'>{out}</ul>",
         'itemMarkup' => "<li class='{class}' style='margin: 10px;'>{out}</li>",
         'linkMarkup' => "<a href='{url}'><span>{out}</span></a>",
@@ -555,12 +514,12 @@ function prNx($item = null)
 
 // link to the prev blog post, if there is one
     if ($p_prev->id) {
-		$out .= "<a href='$p_prev->url'>&laquo; $p_prev->title</a>";
+		$out .= "<a href='$p_prev->url'><i data-feather=arrow-left></i> $p_prev->title</a>";
     }
 
 // link to the next blog post, if there is one
     if ($p_next->id) {
-        $out .= "<a href='$p_next->url'>$p_next->title &raquo;</a>";
+        $out .= "<a href='$p_next->url'>$p_next->title <i data-feather='arrow-right'></i></a>";
     }
 
     return $out;

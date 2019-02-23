@@ -3,14 +3,22 @@
 // If there are more than 12 posts, it also paginates them.
 $posts = page()->children('limit=12');
 ?>
+<!-- CONTENT -->
+<div id='content-body' style='display: block'>
+<?php
+// Blog Posts
+  foreach ($posts as $post) {
+    wireIncludeFile('views/parts/_blog-post.php', ['post' => $post]);
+  }
+?>
 
-<div id='content-body'>
+  <?php // Pagination
+    echo pagination($posts); ?>
 
-<?php wireIncludeFile('views/parts/_blog-posts.php', ['posts' => $posts]);?>
-<?=pagination($posts);?>
+</div><!-- /CONTENT -->
 
-</div><!-- /#content-body -->
 
+<!-- SIDEBAR -->
 <div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
-</div>
+</div><!-- /SIDEBAR -->

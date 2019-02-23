@@ -1,8 +1,8 @@
 <?php namespace ProcessWire;
 // Get All Posts
-$category = pages()->get("template=blog-posts")->children("categories=$page, limit=12");
+$posts = pages()->get("template=blog-posts")->children("categories=$page, limit=12");
 // No Posts Found
-// if( !count($category) ) {
+// if( !count($posts) ) {
 // // Add this page to the trash bin because it is not assigned to any entry
 // 	$page->trash();
 // // Show 404
@@ -10,11 +10,21 @@ $category = pages()->get("template=blog-posts")->children("categories=$page, lim
 // }
 ?>
 
+<!-- CONTENT -->
 <div id='content-body'>
-  <?php wireIncludeFile('views/parts/_blog-posts.php', ['posts' => $category]);?>
-  <?=pagination($category);?>
-</div>
+<?php
+// Blog Posts
+foreach ($posts as $post) {
+  wireIncludeFile('views/parts/_blog-post.php', ['post' => $post]);
+}
+?>
 
+<?php // Pagination
+  echo pagination($posts);
+?>
+</div><!-- /CONTENT -->
+
+<!-- SIDEBAR -->
 <div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
-</div>
+</div><!-- /SIDEBAR -->

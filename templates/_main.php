@@ -18,7 +18,7 @@ wireincludeFile("views/_head.php");
 <!-- MAIN -->
 <div id='main' class="main">
 <!-- CONTENT BODY -->
-  <div id='content-body' class="content-body" style='flex: 1;'>
+  <div id='content-body' class="content-body">
     <?php // Basic Page Body
       echo page()->body;
     ?>

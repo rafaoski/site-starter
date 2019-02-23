@@ -72,6 +72,8 @@ setting([
 // Basic Transate
     'search-placeholder' => __('Search'),
     'search-label' => __('search'),
+    'previous' => __('Previous'),
+    'next' => __('Next'), 
     'edit' => __('Edit'),
     'edit-page' => __('Edit Page'),
     'read-more' => __('Read More'),
@@ -87,10 +89,14 @@ setting([
     'archives-date' => __('Date -- %1s/%2s'),
     'author-not-add' => __('Author did not add any entries'),
     'author-more-articles' => __('See more of my articles'),
+    'more-about' => __('More About'),
     'also-like' => __('You might also like:'),
     'recent-posts' => __('Recent Posts'),
     'in-blog' => __('In The Blog'),
     'all-posts' => __('List All Posts'),
+    'written-by' => __('Written by'),
+    'posted-in' => __('Posted in'),
+    'on' => __('on %s'),
 // COMMENTS FORM
     'cite' => __('Name'),
     'email' => __('Email'),

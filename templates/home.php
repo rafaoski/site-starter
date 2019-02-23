@@ -19,7 +19,8 @@ $sections = pages('/options/')->home_sections;
       ['section' => $section, 'section_options' => $section_options]); ?>
 
       <a href="<?=$section->url;?>">
-        <?=setting('read-more');?> &raquo;
+        <?=setting('read-more');?>
+        <i data-feather="arrow-right-circle"></i>
       </a><br>
     </section>
   <?php endforeach;
@@ -33,7 +34,8 @@ $sections = pages('/options/')->home_sections;
       wireIncludeFile('views/contact/_contact-info.php', ['item' => $contact]);
     ?>
     <a href="<?=$contact->url;?>">
-      <?=setting('more-contact');?> &raquo;
+      <?=setting('more-contact');?>
+      <i data-feather="arrow-right-circle"></i>
     </a>
   </div>
 </div>

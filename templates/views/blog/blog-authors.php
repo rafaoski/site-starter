@@ -1,8 +1,9 @@
 <?php namespace ProcessWire;
 $authors = page()->children("limit=18"); ?>
 
+<!-- CONTENT -->
 <div id='content-body'>
-  <div style='display: flex; flex-wrap: wrap; justify-content: space-around;'>
+  <div class='flex-center'>
 <?php foreach($authors as $author):
 $user_id = $author->get_user;
 $auth_count = pages()->get("template=blog-posts")->children("created_users_id=$user_id");
@@ -32,8 +33,9 @@ $img = $author->images->first();
   </div>
 <?php // Pagination
 echo pagination($authors); ?>
-</div><!-- #content-body -->
+</div><!-- /CONTENT -->
 
+<!-- SIDEBAR -->
 <div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
-</div>
+</div><!-- /SIDEBAR -->

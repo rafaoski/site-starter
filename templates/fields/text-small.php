@@ -4,7 +4,7 @@
 // https://processwire.com/blog/posts/processwire-3.0.101-core-updates/
    echo sanitizer()->truncate($value, [
             'type' => 'sentence',
-            'maxLength' => 250,
+            'maxLength' => 220,
             'visible' => true,
             'keepFormatTags' => false,
             'more' => ' ...'

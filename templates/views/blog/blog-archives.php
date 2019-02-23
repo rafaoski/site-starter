@@ -11,9 +11,10 @@ if ($input->urlSegment(1)) {
     }
 }
 ?>
-
+<!-- CONTENT -->
 <div id='content-body' pw-prepend>
 
+<!-- ARCHIVES -->
 <form action="./">
 
   <select style='background:#bab5af; color:black;' class="uk-select" name='form'
@@ -25,7 +26,7 @@ if ($input->urlSegment(1)) {
 
   </select>
 
-</form>
+</form><!-- /ARCHIVES -->
 
 <?php //GET URL SEGMENT
 $y = $input->urlSegment(1);
@@ -42,12 +43,16 @@ if ($y) {
     echo "<h3>" . sprintf(setting('archives-date'),$y, $m ) . "</h3>";
 }
 // Blog Posts
-wireIncludeFile('views/parts/_blog-posts.php', ['posts' => $items]);
-// Pagination
+  foreach ($items as $post) {
+    wireIncludeFile('views/parts/_blog-post.php', ['post' => $post]);
+}
+?>
+
+<?php // Pagination
 echo pagination($items); ?>
+</div><!-- /CONTENT -->
 
-</div><!-- /#content-body -->
-
+<!-- SIDEBAR -->
 <div id='sidebar' pw-prepend>
   <?php wireIncludeFile('views/parts/_blog-links.php'); ?>
-</div>
+</div><!-- /SIDEBAR -->

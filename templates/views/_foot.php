@@ -4,11 +4,11 @@
   <div>
     <form id='search' class='s-form' style='padding: 10px; margin-bottom: 0; color: tomato;'
           action='<?=pages()->get('template=basic-search')->url?>' method='get'>
-          <label style='font-size: 2rem; font-weight: normal;' for="search-i">
+          <label style='font-size: 2rem; font-weight: normal;' for="search-input">
           <?=editItem(pages()->get("template=basic-search"));?>
           <i data-feather='search' style='stroke-width: 1px'></i>
           <?=setting('search-placeholder')?>
-          <input id='search-i' type='text' name='q' class='s-input' style='border: 1px solid #4e4e4e; color: aliceblue;'
+          <input id='search-input' type='text' name='q' class='s-input' style='border: 1px solid #4e4e4e; color: aliceblue;'
                  placeholder='<?=setting('search-placeholder')?>&hellip;' required></label>
     </form>
   </div><!-- /SEARCH FORM -->

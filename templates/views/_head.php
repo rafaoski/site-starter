@@ -79,6 +79,9 @@ gwCode(setting('gw-code'));
     </h2>
 </div><!-- /HEADER SEO-->
 
+<?php // External Links
+$show_links = ['home', 'contact', 'about', 'about-item'];
+if ( in_array(page()->template->name, $show_links) ): ?>
 <!-- EXTERNAL LINKS -->
 <div id='external-links' class='external-links'>
   <ul>
@@ -89,6 +92,7 @@ gwCode(setting('gw-code'));
       <?=externalLink(setting('options')->external_link);?>
   </ul>
 </div><!-- /EXTERNAL LINKS -->
+<?php endif; ?>
 
 <!-- BREADCRUMBS -->
 <?php if (page() != pages('/')):?>
@@ -104,9 +108,5 @@ gwCode(setting('gw-code'));
 </header><!-- /HEADER -->
 
 <?php
-// Social Share Buttons ( https://www.addtoany.com/ )
-if (setting('enable-share-buttons')) {
-echo toAny(['f','t','e']);
-}
 // Edit Button
 echo editBtn(page());

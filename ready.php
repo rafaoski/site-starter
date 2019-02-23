@@ -13,7 +13,7 @@
  *
  */
 
-// SEO Hook 
+// SEO Hook
 $wire->addHookAfter('Pages::saveReady', function($event) {
 // retrieve first argument by index (0 based)
 $page = $event->arguments(0);
@@ -86,14 +86,24 @@ $value = str_replace("</title>", "</title>\n$cust_style", $value);
 $event->return = $value;
 });
 
+// Hook Admin Custom CSS
+$wire->addHookAfter('Page::render', function($event) {
+	if(page()->template != 'admin') return;
+	// Return Content
+	$value  = $event->return;
+	$templates = urls()->templates;
+	$style = "<link rel='stylesheet' href='{$templates}assets/css/admin.css'>";
+	$event->return = str_replace("</head>", "\n\t$style</head>", $value);
+});
+
 // Reload turbolinks ( Admin Pages )
 $wire->addHookAfter('Page::render', function($event) {
-if(page()->template != 'admin') return;
-$value  = $event->return;
-$turbolinks_reload = "<meta name='turbolinks-visit-control' content='reload'>";
-$value = str_replace("</head>", "\n\t$turbolinks_reload\n</head>", $value);
-// set the modified value back to the return value
-$event->return = $value;
+	if(page()->template != 'admin') return;
+	$value  = $event->return;
+	$turbolinks_reload = "<meta name='turbolinks-visit-control' content='reload'>";
+	$value = str_replace("</head>", "\n\t$turbolinks_reload\n</head>", $value);
+	// set the modified value back to the return value
+	$event->return = $value;
 });
 
 // Remove unnecessary Categories and Tags
