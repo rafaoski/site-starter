@@ -80,10 +80,6 @@ setting([
     'more-pages' => __('More Pages'),
     'found-pages' => __("Found %d page(s)."),
     'no-found' =>  __('Sorry, no results were found.'),
-// Contact
-    'contact-form' => __('Contact Form'),
-    'contact-info' => __('Contact Info'),
-    'more-contact' => __('More Contact Information'),
 // Blog Translate ( views/blog/all-files* )
     'select-archives' => __('Select Archives'),
     'archives-date' => __('Date -- %1s/%2s'),
@@ -112,6 +108,24 @@ setting([
     'errors' => __('There were errors and the comment was not approved'),
     'previous-comments' => __('&laquo; Previous Comments'),
     'next-comments' => __('Next Comments &raquo;'),
+// Contact Info Translate
+    'contact-info' => __('Contact Info'),
+    'more-contact' => __('More Contact Information'),
+// Contact Form Translate
+    'contact-form' => __('Contact Form'),
+    'not-fill' => __('Do Not Fill First Security Input !!!'),
+    'label-name' => __('Name'),
+    'label-email' => __('E-Mail'),
+    'label-message' => __('Message'),
+    'submit' => __('Submit'),
+    'reset' => __('Reset'),
+    'show-form' => __('Show Form'),
+    'label-success' => __('Success !!! Your message has been sent'),
+    'label-accept' => __('By submitting a query, you accept'),
+    'label-privacy' => __('privacy policy'),
+    'something_wrong' => __('Something Wrong !!! Try it again'),
+    'fill-fields' => __('Fill the fields correctly !!!'),
+    'csrf-match' =>  __('Stop ... Session CSRF Not Match !!!'),
 ]);
 
 include_once('./_func.php');
